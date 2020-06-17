@@ -1,0 +1,84 @@
+package Clases;
+
+import java.util.Scanner;
+
+public class CColas {
+    Scanner teclado = new Scanner (System.in);
+    
+    private int max;
+    private int[] COLA;
+    private int FRENTE;
+    private int FINAL;
+    
+    public CColas(){
+        this.max = 100;
+        this.FRENTE = 0;
+        this.FINAL = 0;
+        this.COLA = new int [this.max + 1];
+    }
+    
+    public CColas(int max){
+        this.max = max;
+        this.FRENTE = 0;
+        this.FINAL  = 0;
+        this.COLA = new int [this.max + 1];
+    }
+    
+    public boolean siEstaLlena(){
+        if (this.FINAL == this.max){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public boolean siEstaVacio(){
+        if(this.FINAL == this.FRENTE){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public void insertarCola(){
+        if(siEstaLlena()){
+            System.out.println("La cola esta llena...");
+        }else{
+            int aux;
+            System.out.println("Ingrese elemento: ");
+            aux = teclado.nextInt();
+            this.FINAL++;
+            this.COLA[FINAL] = aux;
+        }
+    }
+    
+    public void eliminarCola(){
+        if(this.FINAL == this.FRENTE){
+            System.out.println("La cola esta vacio..");
+        }else{
+           for(int i = FRENTE; i <= FINAL - 1; i++){
+            COLA[i] = COLA[i+1];
+        }
+           System.out.println("Elemento eliminado....");
+           FINAL --;
+        }
+    }
+    
+    public void mostrarCola(){
+        if(siEstaVacio()){
+            System.out.println("La cola esta vacio...");
+        }else{
+            System.out.println("Los elementos de la cola son: ");
+            for(int i = FRENTE; i <= FINAL -1; i++){
+                System.out.print(COLA[i] + " ---> ");
+            }
+        }
+    }
+    
+    
+    public void tamañoCola(){
+        System.out.println("Tamaño de la cola es: " + this.max);
+    }
+    
+    
+}
